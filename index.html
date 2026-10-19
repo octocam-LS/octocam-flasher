@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Octocam Firmware Update</title>
+<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+<style>
+  :root { --bg:#232323; --fg:#f5f5f0; --muted:#a8a8a0; --card:#2c2c2c; --line:#3c3c3c; --warn:#e0b030; --blue:#2f6fd0; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; background:var(--bg); color:var(--fg);
+    font-family:Arial, Helvetica, sans-serif; line-height:1.45; }
+  .wrap { max-width:640px; margin:0 auto; padding:28px 16px 56px; }
+  h1 { font-family:'Arial Black', Arial, Helvetica, sans-serif; font-weight:900; text-align:center;
+    font-size:clamp(1.7rem, 8vw, 2.8rem); line-height:1.05; margin:8px 0 6px; }
+  .sub { text-align:center; color:var(--muted); margin:0 0 28px; }
+  h2 { font-size:1.05rem; letter-spacing:0.03em; margin:0 0 10px; }
+  ol { margin:0; padding-left:1.3em; }
+  li { margin-bottom:8px; }
+  .steps { background:var(--card); border-radius:12px; padding:18px 18px 10px; margin-bottom:22px; }
+  .card { background:var(--card); border-radius:12px; padding:18px; margin-bottom:16px; }
+  .card h3 { margin:0 0 2px; font-size:1.15rem; }
+  .meta { color:var(--muted); font-size:0.88rem; margin-bottom:14px; }
+  .note { font-size:0.85rem; color:var(--muted); margin-top:12px; }
+  .warn { border-left:4px solid var(--warn); background:#33301f; color:#f0e6c0; padding:10px 12px;
+    border-radius:6px; font-size:0.88rem; margin:0 0 14px; }
+  .install-btn { width:100%; padding:14px; font-size:1.05rem; font-weight:700; border:none; border-radius:10px;
+    background:var(--blue); color:var(--fg); cursor:pointer; }
+  .install-btn:active { filter:brightness(1.15); }
+  .msg { display:block; padding:12px; border-radius:8px; background:#3a2323; color:#f0c8c8; font-size:0.9rem; }
+  details { background:var(--card); border-radius:12px; padding:14px 18px; margin-top:22px; }
+  summary { cursor:pointer; font-weight:700; }
+  details p, details li { font-size:0.92rem; }
+  code { background:#1b1b1b; padding:1px 5px; border-radius:4px; }
+  footer { text-align:center; color:var(--muted); font-size:0.8rem; margin-top:30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Octocam Firmware Update</h1>
+  <p class="sub">Install the latest firmware over USB, right from this page. Nothing to install on your computer.</p>
+
+  <div class="steps">
+    <h2>How it works</h2>
+    <ol>
+      <li>Open this page in <b>Google Chrome</b> or <b>Microsoft Edge</b> on a laptop or desktop computer.</li>
+      <li>Connect your Octocam device with a <b>USB-C data cable</b> (some charging-only cables don't work).</li>
+      <li>Click <b>Install</b> for your device below and pick its port in the list
+          (usually called <i>USB JTAG/serial debug unit</i>), then click <b>Connect</b>.</li>
+      <li>Click <b>Install</b> again. Leave <b>"Erase device"</b> unticked to keep your settings, password,
+          network name and pairings.</li>
+      <li>Wait until it says the installation is complete (about a minute), then unplug the device.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>Octocam LS Sender</h3>
+    <div class="meta">Light barrier sender &middot; Seeed XIAO ESP32-C6 &middot; firmware 2.2.0</div>
+    <esp-web-install-button manifest="firmware/ls-sender-c6/manifest.json">
+      <button class="install-btn" slot="activate">Install on LS Sender</button>
+      <span class="msg" slot="unsupported">This browser can't install firmware. Please use Google Chrome or Microsoft Edge on a computer.</span>
+      <span class="msg" slot="not-allowed">Installing needs a secure (https) connection. Open this page from its https:// address.</span>
+    </esp-web-install-button>
+  </div>
+
+  <div class="card">
+    <h3>Octocam Trigger</h3>
+    <div class="meta">Camera trigger with OLED display &middot; ESP32-C3 &middot; firmware 1.2.3</div>
+    <div class="warn"><b>Only for triggers with an optocoupler.</b> Some early triggers are wired directly to the
+      camera without an optocoupler &ndash; don't install this on those. If you're not sure which one you have,
+      please contact Octocam before updating.</div>
+    <esp-web-install-button manifest="firmware/trigger-c3/manifest.json">
+      <button class="install-btn" slot="activate">Install on Trigger</button>
+      <span class="msg" slot="unsupported">This browser can't install firmware. Please use Google Chrome or Microsoft Edge on a computer.</span>
+      <span class="msg" slot="not-allowed">Installing needs a secure (https) connection. Open this page from its https:// address.</span>
+    </esp-web-install-button>
+  </div>
+
+  <details>
+    <summary>Device not in the list / connection fails?</summary>
+    <ul>
+      <li>Try a different USB cable or USB port. Many short cables only charge and can't carry data.</li>
+      <li>Put the board into download mode: hold its <b>BOOT</b> button, plug in the USB cable (or press and release
+          <b>RESET</b>), then let go of BOOT. Click Install again.</li>
+      <li>Close other programs that might use the port (for example the Arduino IDE serial monitor).</li>
+      <li>After an install in download mode, press <b>RESET</b> or unplug and replug the device so it starts the new firmware.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Updating without a computer</summary>
+    <p>Every Octocam device can also be updated over WiFi from its own web app: connect your phone to the device's
+      WiFi, open <code>http://8.8.8.8</code> in your browser and use <b>Firmware Update</b> with the .bin file you
+      got from Octocam.</p>
+  </details>
+
+  <footer>Octocam &middot; firmware installer powered by ESP Web Tools</footer>
+</div>
+</body>
+</html>
