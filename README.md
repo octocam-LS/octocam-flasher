@@ -6,7 +6,7 @@ Web page for installing Octocam firmware over USB with [ESP Web Tools](https://e
 | Folder | Device | Chip | Version |
 |---|---|---|---|
 | `firmware/ls-sender-c6` | Octocam LS Sender | XIAO ESP32-C6 | 2.2.0 |
-| `firmware/trigger-c3` | Octocam Trigger, OLED, **optocoupler build** | ESP32-C3 | 1.2.3 |
+| `firmware/trigger-c3` | Octocam Trigger, OLED | ESP32-C3 | 1.2.3 |
 
 Each folder holds the separate parts from Arduino IDE "Export Compiled Binary":
 bootloader `0x0`, partition table `0x8000`, `boot_app0` `0xE000`, app `0x10000`.

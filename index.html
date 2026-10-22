@@ -43,10 +43,12 @@
   <div class="steps">
     <h2>How it works</h2>
     <ol>
-      <li>Open this page in <b>Google Chrome</b> or <b>Microsoft Edge</b> on a laptop or desktop computer.</li>
+      <li>Open this page in <b>Google Chrome</b> or <b>Microsoft Edge</b> on a <b>Windows PC</b> or <b>Mac</b>
+          (Safari can't install firmware).</li>
       <li>Connect your Octocam device with a <b>USB-C data cable</b> (some charging-only cables don't work).</li>
       <li>Click <b>Install</b> for your device below and pick its port in the list
-          (usually called <i>USB JTAG/serial debug unit</i>), then click <b>Connect</b>.</li>
+          (on Windows usually <i>USB JTAG/serial debug unit</i>, on a Mac <i>cu.usbmodem&hellip;</i>),
+          then click <b>Connect</b>.</li>
       <li>Click <b>Install</b> again. Leave <b>"Erase device"</b> unticked to keep your settings, password,
           network name and pairings.</li>
       <li>Wait until it says the installation is complete (about a minute), then unplug the device.</li>
@@ -66,9 +68,6 @@
   <div class="card">
     <h3>Octocam Trigger</h3>
     <div class="meta">Camera trigger with OLED display &middot; ESP32-C3 &middot; firmware 1.2.3</div>
-    <div class="warn"><b>Only for triggers with an optocoupler.</b> Some early triggers are wired directly to the
-      camera without an optocoupler &ndash; don't install this on those. If you're not sure which one you have,
-      please contact Octocam before updating.</div>
     <esp-web-install-button manifest="firmware/trigger-c3/manifest.json">
       <button class="install-btn" slot="activate">Install on Trigger</button>
       <span class="msg" slot="unsupported">This browser can't install firmware. Please use Google Chrome or Microsoft Edge on a computer.</span>
