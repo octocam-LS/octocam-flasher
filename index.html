@@ -45,7 +45,7 @@
     <ol>
       <li>Open this page in <b>Google Chrome</b> or <b>Microsoft Edge</b> on a <b>Windows PC</b> or <b>Mac</b>
           (Safari can't install firmware).</li>
-      <li>Connect your Octocam device with a <b>USB-C data cable</b> (some charging-only cables don't work).</li>
+      <li>Connect your Octocam device with a <b>USB data cable</b> (USB-C, or micro-USB for the legacy sender; some charging-only cables don't work).</li>
       <li>Click <b>Install</b> for your device below and pick its port in the list
           (on Windows usually <i>USB JTAG/serial debug unit</i>, on a Mac <i>cu.usbmodem&hellip;</i>),
           then click <b>Connect</b>.</li>
@@ -60,6 +60,18 @@
     <div class="meta">Light barrier sender &middot; Seeed XIAO ESP32-C6 &middot; firmware 2.2.0</div>
     <esp-web-install-button manifest="firmware/ls-sender-c6/manifest.json">
       <button class="install-btn" slot="activate">Install on LS Sender</button>
+      <span class="msg" slot="unsupported">This browser can't install firmware. Please use Google Chrome or Microsoft Edge on a computer.</span>
+      <span class="msg" slot="not-allowed">Installing needs a secure (https) connection. Open this page from its https:// address.</span>
+    </esp-web-install-button>
+  </div>
+
+  <div class="card">
+    <h3>Octocam LS Sender (legacy)</h3>
+    <div class="meta">Light barrier sender &middot; Wemos D1 mini ESP8266 &middot; firmware 2.4.0-8266</div>
+    <p class="note" style="margin:0 0 14px">Uses a <b>micro-USB</b> data cable. Its port is called <i>USB-SERIAL CH340</i>
+      on Windows and <i>cu.wchusbserial&hellip;</i> or <i>cu.usbserial&hellip;</i> on a Mac.</p>
+    <esp-web-install-button manifest="firmware/ls-sender-8266/manifest.json">
+      <button class="install-btn" slot="activate">Install on LS Sender (legacy)</button>
       <span class="msg" slot="unsupported">This browser can't install firmware. Please use Google Chrome or Microsoft Edge on a computer.</span>
       <span class="msg" slot="not-allowed">Installing needs a secure (https) connection. Open this page from its https:// address.</span>
     </esp-web-install-button>
@@ -82,15 +94,18 @@
       <li>Put the board into download mode: hold its <b>BOOT</b> button, plug in the USB cable (or press and release
           <b>RESET</b>), then let go of BOOT. Click Install again.</li>
       <li>Close other programs that might use the port (for example the Arduino IDE serial monitor).</li>
+      <li>Legacy sender (D1 mini) not in the list: it needs the CH340 USB driver. Windows and current macOS usually
+          install it by themselves; if not, install the CH340 driver from the chip maker WCH and plug it in again.</li>
       <li>After an install in download mode, press <b>RESET</b> or unplug and replug the device so it starts the new firmware.</li>
     </ul>
   </details>
 
   <details>
     <summary>Updating without a computer</summary>
-    <p>Every Octocam device can also be updated over WiFi from its own web app: connect your phone to the device's
-      WiFi, open <code>http://8.8.8.8</code> in your browser and use <b>Firmware Update</b> with the .bin file you
-      got from Octocam.</p>
+    <p>Devices with current firmware update themselves over WiFi: connect your phone to the device's WiFi, open
+      <code>http://8.8.8.8</code>, enter your home WiFi under <b>Home WiFi</b> (2.4 GHz; <b>Scan</b> lists the networks)
+      and tap <b>Update Firmware</b>. The device fetches the newest version from the internet and installs it.</p>
+    <p>Older firmware can't do this yet: install the current version once over USB with this page.</p>
   </details>
 
   <footer>Octocam &middot; firmware installer powered by ESP Web Tools</footer>

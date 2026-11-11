@@ -1,0 +1,17 @@
+{
+  "name": "Octocam LS Sender legacy (Wemos D1 mini ESP8266)",
+  "version": "2.4.0-8266",
+  "new_install_prompt_erase": true,
+  "new_install_improv_wait_time": 0,
+  "builds": [
+    {
+      "chipFamily": "ESP8266",
+      "parts": [
+        {
+          "path": "firmware.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}
